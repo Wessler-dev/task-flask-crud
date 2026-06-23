@@ -2,10 +2,6 @@ from flask import Flask, request, jsonify
 from models.task import Task
 app = Flask(__name__)
 
-#CRUD
-#CREAT,READ, UPDATE AND DELETE
-#Tabela: Tarefa
-
 tasks = []
 task_id_control = 1
 
