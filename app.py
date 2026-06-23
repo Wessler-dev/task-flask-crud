@@ -31,7 +31,7 @@ def get_task(id):
         if t.id ==id:
             return jsonify(t.to_dict())
     
-    return jsonify({"message": "Não foi possível entcontrar a atividade"}), 404
+    return jsonify({"message": "Não foi possível encontrar a atividade"}), 404
 
 @app.route('/tasks/<int:id>', methods = ['PUT'])
 def update_task(id):
@@ -42,7 +42,7 @@ def update_task(id):
             break
 
     if task == None:
-        return jsonify({"message":"Não foi possível encontrar a tividade"}), 404
+        return jsonify({"message":"Não foi possível encontrar a atividade"}), 404
 
     data = request.get_json()
     task.title = data['title']
@@ -64,7 +64,7 @@ def delete_task(id):
         return jsonify({"message:": "Não foi possivel encontar a atividade"}), 404
     
     tasks.remove(task)
-    return jsonify({"Message": "Tarefa deletada com sucesso"})
+    return jsonify({"message": "Tarefa deletada com sucesso"})
 
 
 if __name__ == "__main__":
