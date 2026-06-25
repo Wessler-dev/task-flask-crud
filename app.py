@@ -7,20 +7,22 @@ task_id_control = 1
 
 @app.route('/tasks', methods=['POST'])
 def create_task():
-    global task_id_control
+    #global task_id_control
+    task_list  = [task.to_dict() for task in tasks]
+    task_id_control = len(task_list)
     data = request.get_json()
-    new_task = Task(id=task_id_control, title=data['title'], description=data.get('description', ''))
-    task_id_control += 1
+    new_task = Task(id=task_id_control+1, title=data['title'], description=data.get('description', ''))
+    #task_id_control += 1
     tasks.append(new_task)
     print(tasks)
-    return jsonify({"message": "Nova tarefa criada com sucesso"})
+    return jsonify({"message": "Nova tarefa criada com sucesso", "id":new_task.id})
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
     task_list  = [task.to_dict() for task in tasks]
 
     output = {
-                "tasks": task_list,
+                "tasks": task_list, 
                 "total_tasks": len(task_list)
             }
     return jsonify(output)
